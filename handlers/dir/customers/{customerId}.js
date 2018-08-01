@@ -3,7 +3,7 @@
 const Boom = require('boom');
 
 /**
- * Operations on /customers/{customerId}
+ * Operations on /dir/customers/{customerId}
  */
 module.exports = {
     /**

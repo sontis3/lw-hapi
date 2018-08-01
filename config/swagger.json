@@ -13,7 +13,7 @@
     }
   },
   "paths": {
-    "/customers": {
+    "/dir/customers": {
       "get": {
         "operationId": "findCustomers",
         "responses": {
@@ -49,7 +49,7 @@
         }
       }
     },
-    "/customers/{customerId}": {
+    "/dir/customers/{customerId}": {
       "parameters": [
         {
           "name": "customerId",
@@ -111,36 +111,6 @@
     "application/json"
   ],
   "definitions": {
-    "customer2": {
-      "type": "object",
-      "title": "Customer2",
-      "description": "Заказчик или спонсор исследования",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "date_created": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "date_updated": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "active": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "id",
-        "name",
-        "date_created",
-        "active"
-      ]
-    },
     "customer-common": {
       "title": "Customer",
       "description": "Заказчик или спонсор исследования",

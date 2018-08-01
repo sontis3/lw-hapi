@@ -1,7 +1,7 @@
 'use strict';
-var Mockgen = require('../mockgen.js');
+var Mockgen = require('../../mockgen.js');
 /**
- * Operations on /customers/{customerId}
+ * Operations on /dir/customers/{customerId}
  */
 module.exports = {
     /**
@@ -19,7 +19,7 @@ module.exports = {
              * Replace this by actual data for the api.
              */
             Mockgen().responses({
-                path: '/customers/{customerId}',
+                path: '/dir/customers/{customerId}',
                 operation: 'get',
                 response: '200'
             }, callback);
@@ -40,7 +40,7 @@ module.exports = {
              * Replace this by actual data for the api.
              */
             Mockgen().responses({
-                path: '/customers/{customerId}',
+                path: '/dir/customers/{customerId}',
                 operation: 'put',
                 response: '200'
             }, callback);
@@ -61,7 +61,7 @@ module.exports = {
              * Replace this by actual data for the api.
              */
             Mockgen().responses({
-                path: '/customers/{customerId}',
+                path: '/dir/customers/{customerId}',
                 operation: 'delete',
                 response: '204'
             }, callback);
