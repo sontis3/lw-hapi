@@ -26,7 +26,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "active",
+            "type": "boolean",
+            "description": "Переключатель активные/неактивные"
+          }
+        ],
+        "summary": "Получить список заказчиков/спонсоров исследований.",
+        "description": "По умолчанию все заказчики.\nЕсли имеется параметр active, то true - активные, false - неактивные"
       },
       "post": {
         "operationId": "createCustomer",
@@ -46,7 +56,8 @@
               "$ref": "#/definitions/customer-output-detailed"
             }
           }
-        }
+        },
+        "summary": "Создать нового заказчика"
       }
     },
     "/dir/customers/{customerId}": {

@@ -12,9 +12,10 @@ const Mockgen = require('../../data/mockgen.js');
 Test('/dir/customers', function (t) {
 
     /**
-     * summary: 
-     * description: 
-     * parameters: 
+     * summary: Получить список заказчиков/спонсоров исследований.
+     * description: По умолчанию все заказчики.
+                    Если имеется параметр active, то true - активные, false - неактивные
+     * parameters: active
      * produces: 
      * responses: 200
      */
@@ -72,7 +73,7 @@ Test('/dir/customers', function (t) {
 
     });
     /**
-     * summary: 
+     * summary: Создать нового заказчика
      * description: 
      * parameters: body
      * produces: 
