@@ -1,86 +1,214 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "v1",
-    "title": "Contact List",
-    "description": "A Contact list API based on Swagger and built using Node.js"
+    "title": "Directory API",
+    "version": "1.0",
+    "description": "Api справочников системы",
+    "contact": {
+      "name": "Oleg Ovcharenko",
+      "email": "oleg.ovcharenko@labworks.ru"
+    },
+    "license": {
+      "name": "Apache 2.0"
+    }
   },
   "paths": {
-    "/contacts": {
+    "/customers": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
-        "operationId": "contacts_get",
-        "consumes": [],
-        "produces": [
-          "application/json",
-          "text/json"
-        ],
+        "operationId": "findCustomers",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Contact"
+                "$ref": "#/definitions/customer-output"
               }
             }
           }
-        },
-        "deprecated": false
-      }
-    },
-    "/contacts/{id}": {
-      "get": {
-        "tags": [
-          "Contacts"
-        ],
-        "operationId": "contacts_getById",
-        "consumes": [],
-        "produces": [
-          "application/json",
-          "text/json"
-        ],
+        }
+      },
+      "post": {
+        "operationId": "createCustomer",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/customer-input"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/customer-output-detailed"
+            }
+          }
+        }
+      }
+    },
+    "/customers/{customerId}": {
+      "parameters": [
+        {
+          "name": "customerId",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "get": {
+        "operationId": "getCustomer",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/customer-output-detailed"
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateCustomer",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/customer-input"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Contact"
-              }
+              "$ref": "#/definitions/customer-output-detailed"
             }
           }
-        },
-        "deprecated": false
+        }
+      },
+      "delete": {
+        "operationId": "deleteCustomer",
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
       }
     }
   },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "definitions": {
-    "Contact": {
+    "customer2": {
       "type": "object",
+      "title": "Customer2",
+      "description": "Заказчик или спонсор исследования",
       "properties": {
         "id": {
-          "format": "int32",
-          "type": "integer"
+          "type": "string"
         },
         "name": {
           "type": "string"
         },
-        "email": {
-          "type": "string"
+        "date_created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "date_updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "active": {
+          "type": "boolean"
         }
-      }
+      },
+      "required": [
+        "id",
+        "name",
+        "date_created",
+        "active"
+      ]
+    },
+    "customer-common": {
+      "title": "Customer",
+      "description": "Заказчик или спонсор исследования",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "date_created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "date_updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "date_created",
+        "active"
+      ]
+    },
+    "customer-input": {
+      "title": "Customer Input",
+      "description": "The properties that are allowed when creating or updating a Customer.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/customer-common"
+        },
+        {
+          "type": "object",
+          "properties": {}
+        }
+      ]
+    },
+    "customer-output": {
+      "title": "Customer Basic Output",
+      "description": "The properties that are included when fetching a list of Customers.",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$ref": "#/definitions/customer-common"
+        }
+      ]
+    },
+    "customer-output-detailed": {
+      "title": "Customer Detailed Output",
+      "description": "The properties that are included when fetching a single Customer.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/customer-output"
+        },
+        {
+          "type": "object",
+          "properties": {}
+        }
+      ]
     }
   }
 }
