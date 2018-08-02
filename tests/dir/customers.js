@@ -14,7 +14,7 @@ Test('/dir/customers', function (t) {
     /**
      * summary: Получить список заказчиков/спонсоров исследований.
      * description: По умолчанию все заказчики.
-                    Если имеется параметр active, то true - активные, false - неактивные
+Если имеется параметр active, то true - активные, false - неактивные
      * parameters: active
      * produces: 
      * responses: 200

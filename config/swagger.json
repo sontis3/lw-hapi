@@ -133,11 +133,11 @@
         "name": {
           "type": "string"
         },
-        "date_created": {
+        "dateCreated": {
           "type": "string",
           "format": "date-time"
         },
-        "date_updated": {
+        "dateUpdated": {
           "type": "string",
           "format": "date-time"
         },
@@ -148,7 +148,7 @@
       "required": [
         "id",
         "name",
-        "date_created",
+        "dateCreated",
         "active"
       ]
     },
