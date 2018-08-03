@@ -28,7 +28,21 @@ module.exports = {
    * produces: 
    * responses: 201
    */
-  post: function createCustomer(request, h) {
-    return Boom.notImplemented();
+  post: async function createCustomer(request, h) {
+    let customer = request.payload;
+    if (!customer) {
+      return Boom.badData('No customer request data');
+    }
+
+    if (!customer.name) {
+      return Boom.badRequest('Name is required field');
+    }
+
+    let result = await customersDal.post["201"](customer).then(
+      result => { return h.response(result).code(201); },
+      err => { return Boom.internal(err)}
+    );
+
+    return result;
   }
 };

@@ -1,5 +1,7 @@
 'use strict';
 const Customer = require('../../models/dir/customer');
+const Boom = require('boom');
+
 /**
  * Operations on /dir/customers
  */
@@ -15,7 +17,7 @@ module.exports = {
    */
   get: {
     200: function (req, res) {
-      if (typeof(req.query.active) !== 'undefined') {   //   'active' in req.query) {
+      if (typeof (req.query.active) !== 'undefined') {   //   'active' in req.query) {
         return "Свойство есть";
         // return Customer.find();
       } else {
@@ -33,16 +35,8 @@ module.exports = {
    * operationId: createCustomer
    */
   post: {
-    201: function (req, res, callback) {
-      /**
-       * Using mock data generator module.
-       * Replace this by actual data for the api.
-       */
-      Mockgen().responses({
-        path: '/dir/customers',
-        operation: 'post',
-        response: '201'
-      }, callback);
+    201: async function (customer) {
+      return Customer.create({ name: customer.name, active: customer.active });
     }
   }
 };

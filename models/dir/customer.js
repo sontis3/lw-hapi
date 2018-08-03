@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const customerSchema = new Schema({
   name: { required: true, type: String },
-  dateCreated: { type: Date, default: Date.now },
-  dateUpdated: { type: Date, default: Date.now },
-  active: Boolean
+  dateCreated: { required: false, type: Date, default: Date.now },
+  dateUpdated: { required: false, type: Date, default: Date.now },
+  active: { required: true, type: Boolean}
 });
 
 module.exports = mongoose.model('Customer', customerSchema);
