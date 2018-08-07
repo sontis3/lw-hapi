@@ -15,8 +15,7 @@ module.exports = {
    * responses: 200
    * operationId: findCustomers
    */
-  get: {
-    200: function (req, res) {
+  findCustomers: function (req, res) {
       if (typeof (req.query.active) !== 'undefined') {   //   'active' in req.query) {
         return "Свойство есть";
         // return Customer.find();
@@ -24,7 +23,6 @@ module.exports = {
         return "Свойства нет";
         // return Customer.find();
       }
-    }
   },
   /**
    * summary: Создать нового заказчика
@@ -34,9 +32,10 @@ module.exports = {
    * responses: 201
    * operationId: createCustomer
    */
-  post: {
-    201: async function (customer) {
+  createCustomer: async function (customer) {
+    let result = Customer.init().then(() => {
       return Customer.create({ name: customer.name, active: customer.active });
-    }
+    });
+    return result;
   }
 };

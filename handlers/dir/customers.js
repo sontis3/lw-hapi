@@ -15,8 +15,8 @@ module.exports = {
    * produces: 
    * responses: 200
    */
-  get: function findCustomers(request, h) {
-    let aaa = customersDal.get["200"](request, h);
+  get: function (request, h) {
+    let aaa = customersDal.findCustomers(request, h);
     return aaa;
     // return Boom.notImplemented();
   },
@@ -28,7 +28,7 @@ module.exports = {
    * produces: 
    * responses: 201
    */
-  post: async function createCustomer(request, h) {
+  post: async function (request, h) {
     let customer = request.payload;
     if (!customer) {
       return Boom.badData('No customer request data');
@@ -38,10 +38,9 @@ module.exports = {
       return Boom.badRequest('Name is required field');
     }
 
-    let result = await customersDal.post["201"](customer).then(
-      result => { return h.response(result).code(201); },
-      err => { return Boom.internal(err)}
-    );
+    let result = await customersDal.createCustomer(customer)
+      .then( result => { return h.response(result).code(201); })
+      .catch(err => { return Boom.badRequest(err.message); });
 
     return result;
   }
