@@ -1,6 +1,5 @@
 'use strict';
 const Customer = require('../../models/dir/customer');
-const Boom = require('boom');
 
 /**
  * Operations on /dir/customers
@@ -15,14 +14,17 @@ module.exports = {
    * responses: 200
    * operationId: findCustomers
    */
-  findCustomers: function (req, res) {
-      if (typeof (req.query.active) !== 'undefined') {   //   'active' in req.query) {
-        return "Свойство есть";
+  findCustomers: async function (filter) {
+    let dbSelector = {};
+    if (typeof (filter.active) !== 'undefined') {   //   'active' in req.query) {
+        dbSelector = { active: filter.active };
+        // return "Свойство есть";
         // return Customer.find();
       } else {
-        return "Свойства нет";
+        // return "Свойства нет";
         // return Customer.find();
       }
+      return Customer.find(dbSelector).exec();
   },
   /**
    * summary: Создать нового заказчика

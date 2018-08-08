@@ -15,9 +15,12 @@ module.exports = {
    * produces: 
    * responses: 200
    */
-  get: function (request, h) {
-    let aaa = customersDal.findCustomers(request, h);
-    return aaa;
+  get: async function (request, h) {
+    const filter = request.query;
+    let result = await customersDal.findCustomers(filter)
+      .then(dbResult => { return dbResult; })
+      .catch(err => { return Boom.badRequest(err.message); });
+    return result;
     // return Boom.notImplemented();
   },
 
@@ -29,7 +32,7 @@ module.exports = {
    * responses: 201
    */
   post: async function (request, h) {
-    let customer = request.payload;
+    const customer = request.payload;
     if (!customer) {
       return Boom.badData('No customer request data');
     }
@@ -39,7 +42,7 @@ module.exports = {
     }
 
     let result = await customersDal.createCustomer(customer)
-      .then( result => { return h.response(result).code(201); })
+      .then(dbResult => { return h.response(dbResult).code(201); })
       .catch(err => { return Boom.badRequest(err.message); });
 
     return result;
