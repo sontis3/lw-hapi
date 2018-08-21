@@ -13,7 +13,7 @@ module.exports = {
 Если имеется параметр active, то true - активные, false - неактивные
    * parameters: active
    * produces: 
-   * responses: 200
+   * responses: 200, 400
    */
   get: async function (request, h) {
     const filter = request.query;
@@ -29,7 +29,7 @@ module.exports = {
    * description: 
    * parameters: body
    * produces: 
-   * responses: 201
+   * responses: 201, 400, 422
    */
   post: async function (request, h) {
     const customer = request.payload;
