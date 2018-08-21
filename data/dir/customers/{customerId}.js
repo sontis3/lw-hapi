@@ -5,11 +5,11 @@ var Mockgen = require('../../mockgen.js');
  */
 module.exports = {
     /**
-     * summary: 
+     * summary: Получить заказчика по ID
      * description: 
      * parameters: 
      * produces: 
-     * responses: 200
+     * responses: 200, 400, 404
      * operationId: getCustomer
      */
     get: {
@@ -23,14 +23,36 @@ module.exports = {
                 operation: 'get',
                 response: '200'
             }, callback);
+        },
+        400: function (req, res, callback) {
+            /**
+             * Using mock data generator module.
+             * Replace this by actual data for the api.
+             */
+            Mockgen().responses({
+                path: '/dir/customers/{customerId}',
+                operation: 'get',
+                response: '400'
+            }, callback);
+        },
+        404: function (req, res, callback) {
+            /**
+             * Using mock data generator module.
+             * Replace this by actual data for the api.
+             */
+            Mockgen().responses({
+                path: '/dir/customers/{customerId}',
+                operation: 'get',
+                response: '404'
+            }, callback);
         }
     },
     /**
-     * summary: 
+     * summary: Изменить заказчика
      * description: 
      * parameters: body
      * produces: 
-     * responses: 200
+     * responses: 200, 400, 404
      * operationId: updateCustomer
      */
     put: {
@@ -44,14 +66,36 @@ module.exports = {
                 operation: 'put',
                 response: '200'
             }, callback);
+        },
+        400: function (req, res, callback) {
+            /**
+             * Using mock data generator module.
+             * Replace this by actual data for the api.
+             */
+            Mockgen().responses({
+                path: '/dir/customers/{customerId}',
+                operation: 'put',
+                response: '400'
+            }, callback);
+        },
+        404: function (req, res, callback) {
+            /**
+             * Using mock data generator module.
+             * Replace this by actual data for the api.
+             */
+            Mockgen().responses({
+                path: '/dir/customers/{customerId}',
+                operation: 'put',
+                response: '404'
+            }, callback);
         }
     },
     /**
-     * summary: 
-     * description: 
+     * summary: Удалить заказчика
+     * description: Удалить заказчика с идентификатором customerId
      * parameters: 
      * produces: 
-     * responses: 204
+     * responses: 204, 400, 404
      * operationId: deleteCustomer
      */
     delete: {
@@ -64,6 +108,28 @@ module.exports = {
                 path: '/dir/customers/{customerId}',
                 operation: 'delete',
                 response: '204'
+            }, callback);
+        },
+        400: function (req, res, callback) {
+            /**
+             * Using mock data generator module.
+             * Replace this by actual data for the api.
+             */
+            Mockgen().responses({
+                path: '/dir/customers/{customerId}',
+                operation: 'delete',
+                response: '400'
+            }, callback);
+        },
+        404: function (req, res, callback) {
+            /**
+             * Using mock data generator module.
+             * Replace this by actual data for the api.
+             */
+            Mockgen().responses({
+                path: '/dir/customers/{customerId}',
+                operation: 'delete',
+                response: '404'
             }, callback);
         }
     }

@@ -67,7 +67,7 @@
             "description": "Переключатель активные/неактивные"
           }
         ],
-        "summary": "Получить список заказчиков/спонсоров исследований.",
+        "summary": "Получить список заказчиков исследований.",
         "description": "По умолчанию все заказчики.\nЕсли имеется параметр active, то true - активные, false - неактивные"
       },
       "post": {
@@ -81,8 +81,8 @@
             },
             "x-examples": {
               "application/json": {
-                "name": "dolore tempor nulla laboris",
-                "active": true
+                "name": "do in e",
+                "active": false
               }
             }
           }
@@ -124,8 +124,33 @@
             "schema": {
               "$ref": "#/definitions/customer-output-detailed"
             }
+          },
+          "400": {
+            "description": "Указан инвалидный ID документа",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "default": "Invalid ID supplied"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Документ не найден",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "default": "Customer not found"
+                }
+              }
+            }
           }
-        }
+        },
+        "summary": "Получить заказчика по ID"
       },
       "put": {
         "operationId": "updateCustomer",
@@ -144,16 +169,67 @@
             "schema": {
               "$ref": "#/definitions/customer-output-detailed"
             }
+          },
+          "400": {
+            "description": "Указан инвалидный ID документа",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "default": "Invalid ID supplied"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Документ не найден",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "default": "Customer not found"
+                }
+              }
+            }
           }
-        }
+        },
+        "summary": "Изменить заказчика"
       },
       "delete": {
         "operationId": "deleteCustomer",
         "responses": {
           "204": {
-            "description": ""
+            "description": "Документ успешно удален"
+          },
+          "400": {
+            "description": "Указан инвалидный ID документа",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "default": "Invalid ID supplied"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Документ не найден",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "default": "Customer not found"
+                }
+              }
+            }
           }
-        }
+        },
+        "summary": "Удалить заказчика",
+        "description": "Удалить заказчика с идентификатором customerId"
       }
     }
   },

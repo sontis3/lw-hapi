@@ -5,7 +5,7 @@ var Mockgen = require('../mockgen.js');
  */
 module.exports = {
     /**
-     * summary: Получить список заказчиков/спонсоров исследований.
+     * summary: Получить список заказчиков исследований.
      * description: По умолчанию все заказчики.
 Если имеется параметр active, то true - активные, false - неактивные
      * parameters: active
