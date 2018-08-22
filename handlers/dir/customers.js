@@ -44,7 +44,6 @@ module.exports = {
     let result = await customersDal.createCustomer(customer)
       .then(dbResult => { return h.response(dbResult).code(201); })
       .catch(err => { return Boom.badRequest(err.message); });
-
     return result;
   }
 };

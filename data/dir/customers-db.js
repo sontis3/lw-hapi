@@ -26,6 +26,7 @@ module.exports = {
       }
       return Customer.find(dbSelector).exec();
   },
+
   /**
    * summary: Создать нового заказчика
    * description: 
@@ -39,5 +40,18 @@ module.exports = {
       return Customer.create({ name: customer.name, active: customer.active });
     });
     return result;
+  },
+
+  /**
+   * summary: Удалить заказчика
+   * description: Удалить заказчика с идентификатором customerId
+   * parameters: 
+   * produces: 
+   * responses: 204, 400, 404
+   */
+  deleteCustomer: async function (customerId) {
+    let result = Customer.findByIdAndDelete('customerId').exec();
+    return result;
   }
+
 };

@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Directory API",
+    "title": "Customers API",
     "version": "1.0",
-    "description": "Api справочников системы",
+    "description": "Api справочника Заказчики",
     "contact": {
       "name": "Oleg Ovcharenko",
       "email": "oleg.ovcharenko@labworks.ru"
