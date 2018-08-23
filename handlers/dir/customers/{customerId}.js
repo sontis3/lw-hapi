@@ -37,14 +37,19 @@ module.exports = {
   delete: async function deleteCustomer(request, h) {
     const customerId = request.params.customerId;
     let result = await customersDal.deleteCustomer(customerId)
-      .then(dbResult => { return h.response(dbResult).code(204); })
+      .then(dbResult => {
+        if (dbResult === null) {
+          return Boom.notFound(`Документ с id=${customerId} не найден!`);
+        }
+        return h.response(dbResult).code(204);
+      })
       .catch(err => {
         if (err.name === 'CastError') {
           return Boom.notFound(err.message);
         } else {
           return Boom.badRequest(err.message);
         }
-    });
+      });
     return result;
 
   }

@@ -50,8 +50,7 @@ module.exports = {
    * responses: 204, 400, 404
    */
   deleteCustomer: async function (customerId) {
-    let result = Customer.findByIdAndDelete('customerId').exec();
-    return result;
+    return Customer.findByIdAndDelete(customerId).exec();
   }
 
 };
