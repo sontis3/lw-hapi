@@ -95,7 +95,7 @@
             },
             "examples": {
               "application/json": {
-                "id": "a1b2c3d4e5f678",
+                "id": "da1b2c3d4e5f678",
                 "name": "dolore tempor nulla laboris",
                 "active": true,
                 "date_created": "1957-06-10T21:31:33.691Z",
@@ -200,8 +200,20 @@
       "delete": {
         "operationId": "deleteCustomer",
         "responses": {
-          "204": {
-            "description": "Документ успешно удален"
+          "200": {
+            "description": "Документ успешно удален",
+            "schema": {
+              "$ref": "#/definitions/customer-output-detailed"
+            },
+            "examples": {
+              "application/json": {
+                "id": "da1b2c3d4e5f678",
+                "name": "proident",
+                "active": true,
+                "date_created": "1958-05-17T04:27:56.853Z",
+                "date_updated": "1940-12-11T17:52:41.182Z"
+              }
+            }
           },
           "400": {
             "description": "Указан инвалидный ID документа",
@@ -316,8 +328,7 @@
           "$ref": "#/definitions/customer-output"
         },
         {
-          "type": "object",
-          "properties": {}
+          "type": "object"
         }
       ]
     }

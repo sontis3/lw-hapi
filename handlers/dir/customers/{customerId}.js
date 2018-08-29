@@ -32,7 +32,7 @@ module.exports = {
    * description: Удалить заказчика с идентификатором customerId
    * parameters: 
    * produces: 
-   * responses: 204, 400, 404
+   * responses: 200, 400, 404
    */
   delete: async function deleteCustomer(request, h) {
     const customerId = request.params.customerId;
@@ -41,7 +41,8 @@ module.exports = {
         if (dbResult === null) {
           return Boom.notFound(`Документ с id=${customerId} не найден!`);
         }
-        return h.response(dbResult).code(204);
+        return dbResult;
+        // return h.response(dbResult).code(204);
       })
       .catch(err => {
         if (err.name === 'CastError') {
@@ -51,6 +52,5 @@ module.exports = {
         }
       });
     return result;
-
   }
 };
