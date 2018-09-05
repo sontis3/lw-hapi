@@ -25,7 +25,7 @@
     "test": "tape 'tests/**/*.js'",
     "cover": "istanbul cover tape -- 'tests/**/*.js'",
     "lint": "eslint .",
-    "regenerate": "yo swaggerize:test --framework hapi --apiPath ./config/swagger.json",
+    "regenerate": "yo swaggerize:test --framework hapi --apiPath ./config/swagger-root.json",
     "start": "nodemon server.js"
   },
   "generator-swaggerize": {

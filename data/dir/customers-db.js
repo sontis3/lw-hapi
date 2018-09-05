@@ -8,16 +8,16 @@ module.exports = {
   /**
    * summary: Получить список заказчиков/спонсоров исследований.
    * description: По умолчанию все заказчики.
-Если имеется параметр active, то true - активные, false - неактивные
-   * parameters: active
+Если имеется параметр enabled, то true - активные, false - неактивные
+   * parameters: enabled
    * produces: 
    * responses: 200
    * operationId: findCustomers
    */
   findCustomers: async function (filter) {
     let dbSelector = {};
-    if (typeof (filter.active) !== 'undefined') {   //   'active' in req.query) {
-        dbSelector = { active: filter.active };
+    if (typeof (filter.enabled) !== 'undefined') {   //   'enabled' in req.query) {
+        dbSelector = { enabled: filter.enabled };
         // return "Свойство есть";
         // return Customer.find();
       } else {
@@ -37,7 +37,7 @@ module.exports = {
    */
   createCustomer: async function (customer) {
     let result = Customer.init().then(() => {
-      return Customer.create({ name: customer.name, active: customer.active });
+      return Customer.create({ name: customer.name, enabled: customer.enabled });
     });
     return result;
   },

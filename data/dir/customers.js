@@ -7,8 +7,8 @@ module.exports = {
     /**
      * summary: Получить список заказчиков исследований.
      * description: По умолчанию все заказчики.
-Если имеется параметр active, то true - активные, false - неактивные
-     * parameters: active
+Если имеется параметр enabled, то true - активные, false - неактивные
+     * parameters: enabled
      * produces: 
      * responses: 200
      * operationId: findCustomers
