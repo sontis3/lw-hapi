@@ -57,6 +57,9 @@
                 }
               ]
             }
+          },
+          "400": {
+            "$ref": "../errors.json#/responses/400"
           }
         },
         "parameters": [
@@ -102,6 +105,12 @@
                 "date_updated": ""
               }
             }
+          },
+          "400": {
+            "$ref": "../errors.json#/responses/400"
+          },
+          "422": {
+            "$ref": "../errors.json#/responses/422"
           }
         },
         "summary": "Создать нового заказчика"
@@ -126,28 +135,10 @@
             }
           },
           "400": {
-            "description": "Указан инвалидный ID документа",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Invalid ID supplied"
-                }
-              }
-            }
+            "$ref": "../errors.json#/responses/400"
           },
           "404": {
-            "description": "Документ не найден",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Customer not found"
-                }
-              }
-            }
+            "$ref": "../errors.json#/responses/404"
           }
         },
         "summary": "Получить заказчика по ID"
@@ -171,28 +162,10 @@
             }
           },
           "400": {
-            "description": "Указан инвалидный ID документа",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Invalid ID supplied"
-                }
-              }
-            }
+            "$ref": "../errors.json#/responses/400"
           },
           "404": {
-            "description": "Документ не найден",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Customer not found"
-                }
-              }
-            }
+            "$ref": "../errors.json#/responses/404"
           }
         },
         "summary": "Изменить заказчика"
@@ -216,28 +189,10 @@
             }
           },
           "400": {
-            "description": "Указан инвалидный ID документа",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Invalid ID supplied"
-                }
-              }
-            }
+            "$ref": "../errors.json#/responses/400"
           },
           "404": {
-            "description": "Документ не найден",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Customer not found"
-                }
-              }
-            }
+            "$ref": "../errors.json#/responses/404"
           }
         },
         "summary": "Удалить заказчика",

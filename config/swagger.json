@@ -1,325 +1,37 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Directory API",
-    "version": "1.0",
-    "description": "Api справочников системы",
-    "contact": {
-      "name": "Oleg Ovcharenko",
-      "email": "oleg.ovcharenko@labworks.ru"
+    "swagger": "2.0",
+    "info": {
+        "title": "lw-hapi",
+        "version": "1.0",
+        "description": "LIMS labworks Api",
+        "contact": {
+            "name": "Oleg Ovcharenko",
+            "email": "oleg.ovcharenko@labworks.ru"
+        },
+        "license": {
+            "name": "Apache 2.0"
+        }
     },
-    "license": {
-      "name": "Apache 2.0"
+    "paths": {
+        "/dir/customers": {
+            "$ref": "dir/customers.json#/paths/~1dir~1customers"
+        },
+        "/dir/customers/{customerId}": {
+            "$ref": "dir/customers.json#/paths/~1dir~1customers~1{customerId}"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "definitions": {
+        "$ref": "dir/customers.json#/definitions"
     }
-  },
-  "paths": {
-    "/dir/customers": {
-      "get": {
-        "operationId": "findCustomers",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/customer-output"
-              }
-            },
-            "examples": {
-              "application/json": [
-                {
-                  "id": "ipsum cillum",
-                  "name": "occaecat eiusmod ex",
-                  "active": true,
-                  "date_created": "1945-11-21T14:30:32.642Z",
-                  "date_updated": "1939-09-26T04:54:11.370Z"
-                },
-                {
-                  "id": "qui elit",
-                  "name": "non consequ",
-                  "active": false,
-                  "date_created": "1982-10-10T08:27:10.549Z",
-                  "date_updated": "1969-07-04T01:52:52.192Z"
-                },
-                {
-                  "id": "in ipsum anim",
-                  "name": "veniam nostrud nisi voluptate magna",
-                  "active": false,
-                  "date_created": "1979-11-21T03:48:10.831Z",
-                  "date_updated": "1946-02-04T03:21:49.296Z"
-                },
-                {
-                  "id": "Ut nulla minim",
-                  "name": "eu pariatur",
-                  "active": true,
-                  "date_created": "1944-02-08T06:55:06.810Z",
-                  "date_updated": "1983-12-16T08:24:57.184Z"
-                }
-              ]
-            }
-          }
-        },
-        "parameters": [
-          {
-            "in": "query",
-            "name": "active",
-            "type": "boolean",
-            "description": "Переключатель активные/неактивные"
-          }
-        ],
-        "summary": "Получить список заказчиков исследований.",
-        "description": "По умолчанию все заказчики.\nЕсли имеется параметр active, то true - активные, false - неактивные"
-      },
-      "post": {
-        "operationId": "createCustomer",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "$ref": "#/definitions/customer-input"
-            },
-            "x-examples": {
-              "application/json": {
-                "name": "do in e",
-                "active": false
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/customer-output-detailed"
-            },
-            "examples": {
-              "application/json": {
-                "id": "a1b2c3d4e5f678",
-                "name": "dolore tempor nulla laboris",
-                "active": true,
-                "date_created": "1957-06-10T21:31:33.691Z",
-                "date_updated": ""
-              }
-            }
-          }
-        },
-        "summary": "Создать нового заказчика"
-      }
-    },
-    "/dir/customers/{customerId}": {
-      "parameters": [
-        {
-          "name": "customerId",
-          "in": "path",
-          "type": "string",
-          "required": true
-        }
-      ],
-      "get": {
-        "operationId": "getCustomer",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/customer-output-detailed"
-            }
-          },
-          "400": {
-            "description": "Указан инвалидный ID документа",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Invalid ID supplied"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Документ не найден",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Customer not found"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Получить заказчика по ID"
-      },
-      "put": {
-        "operationId": "updateCustomer",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "$ref": "#/definitions/customer-input"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/customer-output-detailed"
-            }
-          },
-          "400": {
-            "description": "Указан инвалидный ID документа",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Invalid ID supplied"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Документ не найден",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Customer not found"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Изменить заказчика"
-      },
-      "delete": {
-        "operationId": "deleteCustomer",
-        "responses": {
-          "204": {
-            "description": "Документ успешно удален"
-          },
-          "400": {
-            "description": "Указан инвалидный ID документа",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Invalid ID supplied"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Документ не найден",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "default": "Customer not found"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Удалить заказчика",
-        "description": "Удалить заказчика с идентификатором customerId"
-      }
-    }
-  },
-  "host": "localhost:3000",
-  "basePath": "/api",
-  "schemes": [
-    "http"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "definitions": {
-    "customer-common": {
-      "title": "Customer",
-      "description": "Заказчик или спонсор исследования",
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Наименование заказчика"
-        },
-        "date_created": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Дата создания"
-        },
-        "date_updated": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Дата последнего редактирования"
-        },
-        "active": {
-          "type": "boolean",
-          "description": "Признак активности"
-        }
-      },
-      "required": [
-        "name",
-        "active"
-      ]
-    },
-    "customer-input": {
-      "title": "Customer Input",
-      "description": "The properties that are allowed when creating or updating a Customer.",
-      "allOf": [
-        {
-          "$ref": "#/definitions/customer-common"
-        },
-        {
-          "type": "object",
-          "properties": {}
-        }
-      ]
-    },
-    "customer-output": {
-      "title": "Customer Basic Output",
-      "description": "The properties that are included when fetching a list of Customers.",
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string",
-              "description": "Идентификатор"
-            }
-          },
-          "required": [
-            "id"
-          ]
-        },
-        {
-          "$ref": "#/definitions/customer-common"
-        }
-      ]
-    },
-    "customer-output-detailed": {
-      "title": "Customer Detailed Output",
-      "description": "The properties that are included when fetching a single Customer.",
-      "allOf": [
-        {
-          "$ref": "#/definitions/customer-output"
-        },
-        {
-          "type": "object",
-          "properties": {}
-        }
-      ]
-    }
-  }
 }

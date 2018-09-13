@@ -17,7 +17,7 @@ Test('/dir/customers', function (t) {
 Если имеется параметр enabled, то true - активные, false - неактивные
      * parameters: enabled
      * produces: 
-     * responses: 200
+     * responses: 200, 400
      */
     t.test('test findCustomers get operation', async function (t) {
 
@@ -77,7 +77,7 @@ Test('/dir/customers', function (t) {
      * description: 
      * parameters: body
      * produces: 
-     * responses: 201
+     * responses: 201, 400, 422
      */
     t.test('test createCustomer post operation', async function (t) {
 

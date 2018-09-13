@@ -25,7 +25,7 @@ const init = async function () {
   await server.register({
     plugin: HapiOpenAPI,
     options: {
-      api: Path.resolve('./config/swagger-root.json'),
+      api: Path.resolve('./config/swagger.json'),
       handlers: Path.resolve('./handlers')
     }
   });

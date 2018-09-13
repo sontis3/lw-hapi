@@ -1,3 +1,3 @@
 # lw-hapi
 
-Swagger api [location](./config/swagger-root.json)
+Swagger api [location](./config/swagger.json)

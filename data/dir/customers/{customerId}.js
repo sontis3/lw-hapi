@@ -95,11 +95,11 @@ module.exports = {
      * description: Удалить заказчика с идентификатором customerId
      * parameters: 
      * produces: 
-     * responses: 204, 400, 404
+     * responses: 200, 400, 404
      * operationId: deleteCustomer
      */
     delete: {
-        204: function (req, res, callback) {
+        200: function (req, res, callback) {
             /**
              * Using mock data generator module.
              * Replace this by actual data for the api.
@@ -107,7 +107,7 @@ module.exports = {
             Mockgen().responses({
                 path: '/dir/customers/{customerId}',
                 operation: 'delete',
-                response: '204'
+                response: '200'
             }, callback);
         },
         400: function (req, res, callback) {

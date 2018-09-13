@@ -136,7 +136,7 @@ Test('/dir/customers/{customerId}', function (t) {
      * description: Удалить заказчика с идентификатором customerId
      * parameters: 
      * produces: 
-     * responses: 204, 400, 404
+     * responses: 200, 400, 404
      */
     t.test('test deleteCustomer delete operation', async function (t) {
 
@@ -187,7 +187,7 @@ Test('/dir/customers/{customerId}', function (t) {
 
         const response = await server.inject(options);
 
-        t.equal(response.statusCode, 204, 'Ok response status');
+        t.equal(response.statusCode, 200, 'Ok response status');
         t.end();
 
     });
