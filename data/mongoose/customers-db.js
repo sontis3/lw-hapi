@@ -43,6 +43,17 @@ module.exports = {
   },
 
   /**
+  * summary: Изменить заказчика
+  * description: 
+  * parameters: body
+  * produces: 
+  * responses: 200, 400, 404
+  */
+ updateCustomer: async function (customerId, customer) {
+   return Customer.findByIdAndUpdate(customerId, customer, {new: true}).exec();
+ },
+
+  /**
    * summary: Удалить заказчика
    * description: Удалить заказчика с идентификатором customerId
    * parameters: 

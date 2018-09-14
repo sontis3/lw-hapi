@@ -2,6 +2,13 @@
 
 const Boom = require('boom');
 const customersDal = require('../../../data/mongoose/customers-db');
+const automapper = require('automapper-ts');
+
+automapper.createMap('ApiCustomer', 'Customer')
+.forMember('name', opts => opts.mapFrom('name'))
+.forMember('enabled', opts => opts.mapFrom('enabled'))
+.ignoreAllNonExisting();
+
 
 /**
  * Operations on /dir/customers/{customerId}
@@ -25,7 +32,30 @@ module.exports = {
      * responses: 200, 400, 404
      */
     put: async function updateCustomer(request, h) {
-        return Boom.notImplemented();
+      const customerId = request.params.customerId;
+      const customer = request.payload;
+      if (!customer) {
+        return Boom.badData('No customer request data');
+      }
+
+      const dbCustomer = automapper.map('ApiCustomer', 'Customer', customer);
+
+      let result = await customersDal.updateCustomer(customerId, dbCustomer)
+        .then(dbResult => {
+          if (dbResult === null) {
+            return Boom.notFound(`Документ с id=${customerId} не найден!`);
+          }
+          return dbResult;
+          // return h.response(dbResult).code(204);
+        })
+        .catch(err => {
+          if (err.name === 'CastError') {
+            return Boom.notFound(err.message);
+          } else {
+            return Boom.badRequest(err.message);
+          }
+        });
+      return result;
     },
     /**
      * summary: Удалить заказчика
@@ -52,5 +82,5 @@ module.exports = {
           }
         });
       return result;
-      }
+    }
 };
