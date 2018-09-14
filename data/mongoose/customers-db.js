@@ -1,5 +1,5 @@
 'use strict';
-const Customer = require('../../models/dir/customer');
+const Customer = require('../../models/mongoose/customer');
 
 /**
  * Operations on /dir/customers

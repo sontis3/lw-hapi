@@ -1,7 +1,22 @@
 'use strict';
 
 const Boom = require('boom');
-const customersDal = require('../../data/dir/customers-db');
+const customersDal = require('../../data/mongoose/customers-db');
+const automapper = require('automapper-ts');
+
+automapper.createMap('Customer', 'ApiCustomer')
+  .forMember('id', opts => opts.sourceObject['_id'].subProp)
+  .forMember('name', opts => opts.mapFrom('name'))
+  .forMember('enabled', opts => opts.mapFrom('enabled'))
+  .forMember('dateCreated', opts => opts.sourceObject['date_created'].toLocaleString())
+  .forMember('dateUpdated', opts => opts.sourceObject['date_updated'].toLocaleString())
+  .forMember('__v', opts => opts.ignore())
+  .ignoreAllNonExisting();
+
+  automapper.createMap('ApiCustomer', 'Customer')
+  .forMember('name', opts => opts.mapFrom('name'))
+  .forMember('enabled', opts => opts.mapFrom('enabled'))
+  .ignoreAllNonExisting();
 
 /**
  * Operations on /dir/customers
@@ -18,7 +33,7 @@ module.exports = {
     get: async function findCustomers(request, h) {
       const filter = request.query;
       let result = await customersDal.findCustomers(filter)
-        .then(dbResult => { return dbResult; })
+        .then(dbResult => { return automapper.map('Customer', 'ApiCustomer', dbResult); })
         .catch(err => { return Boom.badRequest(err.message); });
       return result;
       },
@@ -38,7 +53,9 @@ module.exports = {
       if (!customer.name) {
         return Boom.badRequest('Name is required field');
       }
-  
+
+      const dbCustomer = automapper.map('ApiCustomer', 'Customer', customer);
+
       let result = await customersDal.createCustomer(customer)
         .then(dbResult => { return h.response(dbResult).code(201); })
         .catch(err => { return Boom.badRequest(err.message); });

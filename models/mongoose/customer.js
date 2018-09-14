@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const customerSchema = new Schema({
   name: { required: true, type: String, unique: true },
-  dateCreated: { required: false, type: Date, default: Date.now },
-  dateUpdated: { required: false, type: Date, default: Date.now },
+  date_created: { required: false, type: Date, default: Date.now },
+  date_updated: { required: false, type: Date, default: Date.now },
   enabled: { required: true, type: Boolean}
 });
 

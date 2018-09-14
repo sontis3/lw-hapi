@@ -1,7 +1,7 @@
 'use strict';
 
 const Boom = require('boom');
-const customersDal = require('../../../data/dir/customers-db');
+const customersDal = require('../../../data/mongoose/customers-db');
 
 /**
  * Operations on /dir/customers/{customerId}
