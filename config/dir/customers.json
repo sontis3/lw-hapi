@@ -221,16 +221,6 @@
           "type": "string",
           "description": "Наименование заказчика"
         },
-        "dateCreated": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Дата создания"
-        },
-        "dateUpdated": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Дата последнего редактирования"
-        },
         "enabled": {
           "type": "boolean",
           "description": "Признак активности"
@@ -272,6 +262,25 @@
         },
         {
           "$ref": "#/definitions/customer-common"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateCreated": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Дата создания"
+            },
+            "dateUpdated": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Дата последнего редактирования"
+            }
+          },
+          "required": [
+            "dateCreated",
+            "dateUpdated"
+          ]
         }
       ]
     },
