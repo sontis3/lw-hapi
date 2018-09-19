@@ -8,4 +8,9 @@ const customerSchema = new Schema({
   enabled: { required: true, type: Boolean}
 });
 
+customerSchema.pre('findOneAndUpdate', function(next) {
+  this._update.date_updated = Date.now();
+  next();
+});
+
 module.exports = mongoose.model('Customer', customerSchema);
