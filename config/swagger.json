@@ -1,37 +1,40 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "title": "lw-hapi",
-        "version": "1.0",
-        "description": "LIMS labworks Api",
-        "contact": {
-            "name": "Oleg Ovcharenko",
-            "email": "oleg.ovcharenko@labworks.ru"
-        },
-        "license": {
-            "name": "Apache 2.0"
-        }
+  "swagger": "2.0",
+  "info": {
+    "title": "lw-hapi",
+    "version": "1.0",
+    "description": "LIMS labworks Api",
+    "contact": {
+      "name": "Oleg Ovcharenko",
+      "email": "oleg.ovcharenko@labworks.ru"
     },
-    "paths": {
-        "/dir/customers": {
-            "$ref": "dir/customers.json#/paths/~1dir~1customers"
-        },
-        "/dir/customers/{customerId}": {
-            "$ref": "dir/customers.json#/paths/~1dir~1customers~1{customerId}"
-        }
-    },
-    "host": "localhost:3000",
-    "basePath": "/api",
-    "schemes": [
-        "http"
-    ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
-    "definitions": {
-        "$ref": "dir/customers.json#/definitions"
+    "license": {
+      "name": "Apache 2.0"
     }
+  },
+  "paths": {
+    "/dir/customers": {
+      "$ref": "dir/customers.json#/paths/~1dir~1customers"
+    },
+    "/dir/customers/{customerId}": {
+      "$ref": "dir/customers.json#/paths/~1dir~1customers~1{customerId}"
+    },
+    "/dir/test-objects": {
+      "$ref": "dir/test-objects.json#/paths/~1dir~1test-objects"
+    },
+    "/dir/test-objects/{testObjectId}": {
+      "$ref": "dir/test-objects.json#/paths/~1dir~1test-objects~1{testObjectId}"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ]
 }
