@@ -1,5 +1,5 @@
 'use strict';
-const Customer = require('../../models/mongoose/customer');
+const mModel = require('../../models/mongoose/customer');
 
 /**
  * Operations on /dir/customers
@@ -14,17 +14,17 @@ module.exports = {
    * responses: 200
    * operationId: findCustomers
    */
-  findCustomers: async function (filter) {
+  find: async function (filter) {
     let dbSelector = {};
     if (typeof (filter.enabled) !== 'undefined') {   //   'enabled' in req.query) {
         dbSelector = { enabled: filter.enabled };
         // return "Свойство есть";
-        // return Customer.find();
+        // return mModel.find();
       } else {
         // return "Свойства нет";
-        // return Customer.find();
+        // return mModel.find();
       }
-      return Customer.find(dbSelector).exec();
+      return mModel.find(dbSelector).exec();
   },
 
   /**
@@ -35,9 +35,9 @@ module.exports = {
    * responses: 201
    * operationId: createCustomer
    */
-  createCustomer: async function (customer) {
-    let result = Customer.init().then(() => {
-      return Customer.create({ name: customer.name, enabled: customer.enabled });
+  create: async function (appModel) {
+    let result = mModel.init().then(() => {
+      return mModel.create(appModel);
     });
     return result;
   },
@@ -49,19 +49,19 @@ module.exports = {
   * produces: 
   * responses: 200, 400, 404
   */
- updateCustomer: async function (customerId, customer) {
-   return Customer.findByIdAndUpdate(customerId, customer, {new: true}).exec();
+ update: async function (id, appModel) {
+   return mModel.findByIdAndUpdate(id, appModel, {new: true}).exec();
  },
 
   /**
    * summary: Удалить заказчика
-   * description: Удалить заказчика с идентификатором customerId
+   * description: Удалить заказчика с идентификатором id
    * parameters: 
    * produces: 
    * responses: 204, 400, 404
    */
-  deleteCustomer: async function (customerId) {
-    return Customer.findByIdAndDelete(customerId).exec();
+  delete: async function (id) {
+    return mModel.findByIdAndDelete(id).exec();
   }
 
 };
