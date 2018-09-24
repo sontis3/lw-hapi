@@ -1,0 +1,303 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Delivery Methods API",
+    "version": "1.0",
+    "description": "Api справочника Способы доставки",
+    "contact": {
+      "name": "Oleg Ovcharenko",
+      "email": "oleg.ovcharenko@labworks.ru"
+    },
+    "license": {
+      "name": "Apache 2.0"
+    }
+  },
+  "paths": {
+    "/dir/delivery-methods": {
+      "get": {
+        "operationId": "findDeliveryMethods",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/delivery-method-output"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": "id",
+                  "name": "ad in",
+                  "enabled": false,
+                  "dateCreated": "2003-04-14T03:36:29.500Z",
+                  "dateUpdated": "1995-05-18T01:11:40.629Z"
+                },
+                {
+                  "id": "aliquip sed",
+                  "name": "sit consequat",
+                  "enabled": false,
+                  "dateCreated": "1956-11-15T16:48:45.183Z",
+                  "dateUpdated": "2009-01-20T10:27:00.377Z"
+                },
+                {
+                  "id": "dolor voluptate au",
+                  "name": "in dolor tempor ipsum",
+                  "enabled": false,
+                  "dateCreated": "1979-02-05T18:35:08.806Z",
+                  "dateUpdated": "1953-03-22T22:43:28.394Z"
+                }
+              ]
+            }
+          },
+          "400": {
+            "$ref": "../errors.json#/responses/400"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "enabled",
+            "type": "boolean",
+            "description": "Переключатель активные/неактивные"
+          }
+        ],
+        "summary": "Получить список способов доставки.",
+        "description": "По умолчанию все документы.\nЕсли имеется параметр enabled, то true - активные, false - неактивные"
+      },
+      "post": {
+        "operationId": "createDeliveryMethod",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/delivery-method-input"
+            },
+            "x-examples": {
+              "application/json": {
+                "name": "culpa aliqua fugiat",
+                "enabled": false
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/delivery-method-output-detailed"
+            },
+            "examples": {
+              "application/json": {
+                "id": "ad anim",
+                "name": "incididunt ",
+                "enabled": true,
+                "dateCreated": "1986-02-27T19:54:19.092Z",
+                "dateUpdated": "2008-02-07T16:20:08.731Z"
+              }
+            }
+          },
+          "400": {
+            "$ref": "../errors.json#/responses/400"
+          },
+          "422": {
+            "$ref": "../errors.json#/responses/422"
+          }
+        },
+        "summary": "Создать новый документ"
+      }
+    },
+    "/dir/delivery-methods/{deliveryMethodId}": {
+      "parameters": [
+        {
+          "name": "deliveryMethodId",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "get": {
+        "operationId": "getDeliveryMethod",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/delivery-method-output-detailed"
+            },
+            "examples": {
+              "application/json": {
+                "id": "fugiat sit cillum",
+                "name": "id esse",
+                "enabled": true,
+                "dateCreated": "1955-03-24T11:32:13.622Z",
+                "dateUpdated": "1941-11-12T15:43:30.056Z"
+              }
+            }
+          },
+          "400": {
+            "$ref": "../errors.json#/responses/400"
+          },
+          "404": {
+            "$ref": "../errors.json#/responses/404"
+          }
+        },
+        "summary": "Получить документ по ID"
+      },
+      "put": {
+        "operationId": "updateDeliveryMethod",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/delivery-method-input"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/delivery-method-output-detailed"
+            }
+          },
+          "400": {
+            "$ref": "../errors.json#/responses/400"
+          },
+          "404": {
+            "$ref": "../errors.json#/responses/404"
+          }
+        },
+        "summary": "Изменить документ"
+      },
+      "delete": {
+        "operationId": "deleteDeliveryMethod",
+        "responses": {
+          "200": {
+            "description": "Документ успешно удален",
+            "schema": {
+              "$ref": "#/definitions/delivery-method-output-detailed"
+            },
+            "examples": {
+              "application/json": {
+                "id": "da1b2c3d4e5f678",
+                "name": "proident",
+                "enabled": true,
+                "dateCreated": "1958-05-17T04:27:56.853Z",
+                "dateUpdated": "1940-12-11T17:52:41.182Z"
+              }
+            }
+          },
+          "400": {
+            "$ref": "../errors.json#/responses/400"
+          },
+          "404": {
+            "$ref": "../errors.json#/responses/404"
+          }
+        },
+        "summary": "Удалить документ",
+        "description": "Удалить документ с идентификатором deliveryMethodId"
+      }
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "delivery-method-common": {
+      "title": "Delivery Method",
+      "description": "Метод доставки",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Наименование"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Признак активности"
+        }
+      },
+      "required": [
+        "name",
+        "enabled"
+      ]
+    },
+    "delivery-method-input": {
+      "title": "Delivery Method Input",
+      "description": "The properties that are allowed when creating or updating a Delivery Method.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/delivery-method-common"
+        },
+        {
+          "type": "object",
+          "properties": {}
+        }
+      ]
+    },
+    "delivery-method-output": {
+      "title": "Delivery Method Basic Output",
+      "description": "The properties that are included when fetching a list of Delivery Methods.",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Идентификатор"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        {
+          "$ref": "#/definitions/delivery-method-common"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateCreated": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Дата создания"
+            },
+            "dateUpdated": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Дата последнего редактирования"
+            }
+          },
+          "required": [
+            "dateCreated",
+            "dateUpdated"
+          ]
+        }
+      ]
+    },
+    "delivery-method-output-detailed": {
+      "title": "Delivery Method Detailed Output",
+      "description": "The properties that are included when fetching a single Delivery Method.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/delivery-method-output"
+        },
+        {
+          "type": "object",
+          "properties": {}
+        }
+      ]
+    }
+  }
+}

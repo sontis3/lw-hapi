@@ -24,6 +24,12 @@
         },
         "/dir/test-objects/{testObjectId}": {
             "$ref": "dir/test-objects.json#/paths/~1dir~1test-objects~1{testObjectId}"
+        },
+        "/dir/delivery-methods": {
+            "$ref": "dir/delivery-methods.json#/paths/~1dir~1delivery-methods"
+        },
+        "/dir/delivery-methods/{deliveryMethodId}": {
+            "$ref": "dir/delivery-methods.json#/paths/~1dir~1delivery-methods~1{deliveryMethodId}"
         }
     },
     "host": "localhost:3000",
