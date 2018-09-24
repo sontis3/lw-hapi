@@ -13,4 +13,4 @@ testObjectSchema.pre('findOneAndUpdate', function(next) {
   next();
 });
 
-module.exports = mongoose.model('TestObject', testObjectSchema);
+module.exports = mongoose.model('Test_Object', testObjectSchema);
