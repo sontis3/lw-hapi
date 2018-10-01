@@ -13,7 +13,7 @@
     }
   },
   "paths": {
-    "/dir/studies": {
+    "/catalogs/studies": {
       "get": {
         "operationId": "findStudies",
         "responses": {
@@ -116,7 +116,7 @@
         "summary": "Создать нового заказчика"
       }
     },
-    "/dir/studies/{studyId}": {
+    "/catalogs/studies/{studyId}": {
       "parameters": [
         {
           "name": "studyId",

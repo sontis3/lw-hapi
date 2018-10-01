@@ -14,10 +14,10 @@
     "boom": "^7.1.1",
     "hapi": "^17.6.0",
     "hapi-openapi": "^1.2.0",
-    "mongoose": "^5.2.17"
+    "mongoose": "^5.3.0"
   },
   "devDependencies": {
-    "eslint": "^5.6.0",
+    "eslint": "^5.6.1",
     "istanbul": "~0.4.3",
     "swagmock": "^1.0.0",
     "tape": "^4"

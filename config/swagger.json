@@ -30,7 +30,15 @@
         },
         "/dir/delivery-methods/{deliveryMethodId}": {
             "$ref": "dir/delivery-methods.json#/paths/~1dir~1delivery-methods~1{deliveryMethodId}"
+        },
+
+        "/catalogs/studies": {
+            "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies"
+        },
+        "/catalogs/studies/{studyId}": {
+            "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies~1{studyId}"
         }
+
     },
     "host": "localhost:3000",
     "basePath": "/api",
