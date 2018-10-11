@@ -8,7 +8,7 @@ module.exports = {
      * summary: Получить список исследований.
      * description: По умолчанию все исследования.
 Если имеется параметр enabled, то true - активные, false - неактивные
-     * parameters: enabled
+     * parameters: enabled, year
      * produces: 
      * responses: 200, 400
      * operationId: findStudies
@@ -38,7 +38,7 @@ module.exports = {
         }
     },
     /**
-     * summary: Создать нового заказчика
+     * summary: Создать новое исследование
      * description: 
      * parameters: body
      * produces: 

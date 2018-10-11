@@ -15,7 +15,7 @@ Test('/catalogs/studies', function (t) {
      * summary: Получить список исследований.
      * description: По умолчанию все исследования.
 Если имеется параметр enabled, то true - активные, false - неактивные
-     * parameters: enabled
+     * parameters: enabled, year
      * produces: 
      * responses: 200, 400
      */
@@ -73,7 +73,7 @@ Test('/catalogs/studies', function (t) {
 
     });
     /**
-     * summary: Создать нового заказчика
+     * summary: Создать новое исследование
      * description: 
      * parameters: body
      * produces: 

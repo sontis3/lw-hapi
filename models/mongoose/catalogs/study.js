@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const studySchema = new Schema({
-  code: { required: true, type: String, unique: true, uppercase: true, trim: true, minlength: 5, maxlength: 12 }, // код исследования
+  studyNo: { required: true, type: String, unique: true, uppercase: true, trim: true, minlength: 5, maxlength: 12 }, // код исследования
   customer: { type: Schema.Types.ObjectId, ref: 'Customer' },         // заказчик исследования
   test_object: { type: Schema.Types.ObjectId, ref: 'Test_Object' },   // тестируемые объекты
 

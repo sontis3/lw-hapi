@@ -68,6 +68,15 @@
             "name": "enabled",
             "type": "boolean",
             "description": "Переключатель активные/неактивные"
+          },
+          {
+            "in": "query",
+            "name": "year",
+            "type": "integer",
+            "format": "int32",
+            "description": "Год создания исследования",
+            "minimum": 2016,
+            "maximum": 2050
           }
         ],
         "summary": "Получить список исследований.",
@@ -113,7 +122,7 @@
             "$ref": "../errors.json#/responses/422"
           }
         },
-        "summary": "Создать нового заказчика"
+        "summary": "Создать новое исследование"
       }
     },
     "/catalogs/studies/{studyId}": {
@@ -217,7 +226,7 @@
       "description": "Исследование",
       "type": "object",
       "properties": {
-        "code": {
+        "studyNo": {
           "type": "string",
           "description": "Код исследования"
         },
@@ -235,7 +244,7 @@
         }
       },
       "required": [
-        "code",
+        "studyNo",
         "customerId",
         "enabled"
       ]
