@@ -230,6 +230,12 @@
           "type": "string",
           "description": "Код исследования"
         },
+        "planYear": {
+          "type": "number",
+          "minimum": 2015,
+          "maximum": 2050,
+          "description": "Планируемый год"
+        },
         "customerId": {
           "type": "string",
           "description": "Заказчик"
@@ -245,6 +251,7 @@
       },
       "required": [
         "studyNo",
+        "planYear",
         "customerId",
         "enabled"
       ]
@@ -272,10 +279,17 @@
             "id": {
               "type": "string",
               "description": "Идентификатор"
+            },
+            "serialNumber": {
+              "type": "number",
+              "description": "Порядковый номер исследования",
+              "minimum": 1,
+              "maximum": 100
             }
           },
           "required": [
-            "id"
+            "id",
+            "serialNumber"
           ]
         },
         {

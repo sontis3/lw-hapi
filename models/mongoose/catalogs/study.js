@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 
 const studySchema = new Schema({
   studyNo: { required: true, type: String, unique: true, uppercase: true, trim: true, minlength: 5, maxlength: 12 }, // код исследования
+  planYear: {required: true, type: Number, min: 2015, max: 2050},     // планируемый год
+  serialNumber: {required: true, type: Number, min: 1, max: 100},     // порядковый номер исследования
   customer: { type: Schema.Types.ObjectId, ref: 'Customer' },         // заказчик исследования
   test_object: { type: Schema.Types.ObjectId, ref: 'Test_Object' },   // тестируемые объекты
 
