@@ -17,14 +17,14 @@ module.exports = {
   find: async function (filter) {
     let dbSelector = {};
     if (typeof (filter.enabled) !== 'undefined') {   //   'enabled' in req.query) {
-        dbSelector = { enabled: filter.enabled };
-        // return "Свойство есть";
-        // return mModel.find();
-      } else {
-        // return "Свойства нет";
-        // return mModel.find();
-      }
-      return mModel.find(dbSelector).exec();
+      dbSelector = { enabled: filter.enabled };
+      // return "Свойство есть";
+      // return mModel.find();
+    } else {
+      // return "Свойства нет";
+      // return mModel.find();
+    }
+    return mModel.find(dbSelector).exec();
   },
 
   /**
@@ -49,9 +49,9 @@ module.exports = {
   * produces: 
   * responses: 200, 400, 404
   */
- update: async function (id, appModel) {
-   return mModel.findByIdAndUpdate(id, appModel, {new: true}).exec();
- },
+  update: async function (id, appModel) {
+    return mModel.findByIdAndUpdate(id, appModel, { new: true }).exec();
+  },
 
   /**
    * summary: Удалить заказчика

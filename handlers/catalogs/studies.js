@@ -1,6 +1,24 @@
 'use strict';
 
 const Boom = require('boom');
+const dal = require('../../data/mongoose/studies-db');
+const automapper = require('automapper-ts');
+
+automapper.createMap('Study', 'ApiStudy')
+  .forMember('id', opts => opts.sourceObject['_id'].subProp)
+  .forMember('studyNo', opts => opts.mapFrom('studyNo'))
+  .forMember('planYear', opts => opts.mapFrom('planYear'))
+  .forMember('enabled', opts => opts.mapFrom('enabled'))
+  .forMember('dateCreated', opts => opts.sourceObject['date_created'].toLocaleString())
+  .forMember('dateUpdated', opts => opts.sourceObject['date_updated'].toLocaleString())
+  .forMember('__v', opts => opts.ignore())
+  .ignoreAllNonExisting();
+
+  automapper.createMap('ApiStudy', 'Study')
+  .forMember('studyNo', opts => opts.mapFrom('studyNo'))
+  .forMember('planYear', opts => opts.mapFrom('planYear'))
+  .forMember('enabled', opts => opts.mapFrom('enabled'))
+  .ignoreAllNonExisting();
 
 /**
  * Operations on /catalogs/studies
@@ -14,9 +32,12 @@ module.exports = {
    * produces: 
    * responses: 200, 400
    */
-  get: function findStudies(request, h) {
-    const params = request.query;
-    return Boom.notImplemented();
+  get: async function findStudies(request, h) {
+    const filter = request.query;
+    let result = await dal.find(filter)
+      .then(dbResult => { return automapper.map('Study', 'ApiStudy', dbResult); })
+      .catch(err => { return Boom.badRequest(err.message); });
+    return result;
   },
   /**
    * summary: Создать новое исследование
