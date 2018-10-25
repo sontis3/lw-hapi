@@ -47,6 +47,11 @@ module.exports = {
    * responses: 201, 400, 422
    */
   post: function createStudy(request, h) {
+    const study = request.payload;
+    if (!study) {
+      return Boom.badData('No study request data');
+    }
+
     return Boom.notImplemented();
   }
 };
