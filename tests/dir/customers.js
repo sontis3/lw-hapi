@@ -14,7 +14,8 @@ Test('/dir/customers', function (t) {
     /**
      * summary: Получить список заказчиков исследований.
      * description: По умолчанию все заказчики.
-Если имеется параметр enabled, то true - активные, false - неактивные
+Если имеется параметр enabled, то true - активные, false - неактивные.
+Если имеется параметр short, то true - краткий ответ (имя, ид объекта), false - полный ответ (все поля).
      * parameters: enabled, short
      * produces: 
      * responses: 200, 400

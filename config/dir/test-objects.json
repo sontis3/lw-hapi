@@ -61,10 +61,16 @@
             "name": "enabled",
             "type": "boolean",
             "description": "Переключатель активные/неактивные"
+          },
+          {
+            "in": "query",
+            "name": "short",
+            "type": "boolean",
+            "description": "краткий/полный ответ"
           }
         ],
         "summary": "Получить список документов.",
-        "description": "По умолчанию все документы.\nЕсли имеется параметр enabled, то true - активные, false - неактивные"
+        "description": "По умолчанию все документы.\nЕсли имеется параметр enabled, то true - активные, false - неактивные.\nЕсли имеется параметр short, то true - краткий ответ (имя, ид объекта), false - полный ответ (все поля)."
       },
       "post": {
         "operationId": "createTestObject",
