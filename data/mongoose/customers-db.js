@@ -17,14 +17,14 @@ module.exports = {
   find: async function (filter) {
     let dbSelector = {};
     if (typeof (filter.enabled) !== 'undefined') {   //   'enabled' in req.query) {
-      dbSelector = { enabled: filter.enabled };
-      // return "Свойство есть";
-      // return mModel.find();
-    } else {
-      // return "Свойства нет";
-      // return mModel.find();
+      dbSelector.enabled = filter.enabled;
     }
-    return mModel.find(dbSelector).exec();
+
+    if (typeof (filter.short) !== 'undefined' && filter.short == true) {
+      return mModel.find(dbSelector).select({ name: 1 }).exec();
+    } else {
+      return mModel.find(dbSelector).exec();
+    }
   },
 
   /**

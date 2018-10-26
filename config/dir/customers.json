@@ -68,6 +68,12 @@
             "name": "enabled",
             "type": "boolean",
             "description": "Переключатель активные/неактивные"
+          },
+          {
+            "in": "query",
+            "name": "short",
+            "type": "boolean",
+            "description": "краткий/полный ответ"
           }
         ],
         "summary": "Получить список заказчиков исследований.",
