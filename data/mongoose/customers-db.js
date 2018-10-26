@@ -9,7 +9,8 @@ module.exports = {
    * summary: Получить список заказчиков/спонсоров исследований.
    * description: По умолчанию все заказчики.
 Если имеется параметр enabled, то true - активные, false - неактивные
-   * parameters: enabled
+Если имеется параметр short, то true - краткий ответ (имя, ид объекта), false - полный ответ (все поля).
+   * parameters: enabled, short
    * produces: 
    * responses: 200
    * operationId: findCustomers

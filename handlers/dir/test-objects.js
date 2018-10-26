@@ -13,6 +13,11 @@ automapper.createMap('TestObject', 'ApiTestObject')
   .forMember('__v', opts => opts.ignore())
   .ignoreAllNonExisting();
 
+  automapper.createMap('ShortTestObject', 'ApiTestObject')
+  .forMember('id', opts => opts.sourceObject['_id'].subProp)
+  .forMember('name', opts => opts.mapFrom('name'))
+  .ignoreAllNonExisting();
+
   automapper.createMap('ApiTestObject', 'TestObject')
   .forMember('name', opts => opts.mapFrom('name'))
   .forMember('enabled', opts => opts.mapFrom('enabled'))
@@ -34,7 +39,13 @@ module.exports = {
   get: async function findTestObjects(request, h) {
     const filter = request.query;
     let result = await dal.find(filter)
-      .then(dbResult => { return automapper.map('TestObject', 'ApiTestObject', dbResult); })
+      .then(dbResult => {
+        if (filter.short !== true) {
+          return automapper.map('TestObject', 'ApiTestObject', dbResult); 
+        } else {
+          return automapper.map('ShortTestObject', 'ApiTestObject', dbResult);
+        }
+      })
       .catch(err => { return Boom.badRequest(err.message); });
     return result;
   },

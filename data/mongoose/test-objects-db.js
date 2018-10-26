@@ -9,21 +9,22 @@ module.exports = {
    * summary: Получить список документов.
    * description: По умолчанию все документы.
 Если имеется параметр enabled, то true - активные, false - неактивные
-   * parameters: enabled
+Если имеется параметр short, то true - краткий ответ (имя, ид объекта), false - полный ответ (все поля).
+   * parameters: enabled, short
    * produces: 
    * responses: 200, 400
    */
   find: async function (filter) {
     let dbSelector = {};
     if (typeof (filter.enabled) !== 'undefined') {   //   'enabled' in req.query) {
-      dbSelector = { enabled: filter.enabled };
-      // return "Свойство есть";
-      // return mModel.find();
-    } else {
-      // return "Свойства нет";
-      // return mModel.find();
+      dbSelector.enabled = filter.enabled;
     }
-    return mModel.find(dbSelector).exec();
+
+    if (typeof (filter.short) !== 'undefined' && filter.short == true) {
+      return mModel.find(dbSelector).select({ name: 1 }).exec();
+    } else {
+      return mModel.find(dbSelector).exec();
+    }
   },
 
   /**
