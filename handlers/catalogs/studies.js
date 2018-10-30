@@ -46,12 +46,22 @@ module.exports = {
    * produces: 
    * responses: 201, 400, 422
    */
-  post: function createStudy(request, h) {
+  post: async function createStudy(request, h) {
     const study = request.payload;
     if (!study) {
       return Boom.badData('No study request data');
     }
 
-    return Boom.notImplemented();
+    if (!study.studyNo) {
+      return Boom.badRequest('Number of study is required field');
+    } else if (!study.planYear) {
+      return Boom.badRequest('Year of study is required field');
+    }
+
+    const appModel = automapper.map('ApiStudy', 'Study', study);
+    let result = await dal.create(appModel)
+      .then(dbResult => { return h.response(dbResult).code(201); })
+      .catch(err => { return Boom.badRequest(err.message); });
+    return result;
   }
 };

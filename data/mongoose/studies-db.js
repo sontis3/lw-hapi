@@ -23,5 +23,20 @@ module.exports = {
     }
     
     return mModel.find(dbSelector).exec();
+  },
+
+  /**
+   * summary: Создать новый документ
+   * description: 
+   * parameters: body
+   * produces: 
+   * responses: 201, 400, 422
+   */
+  create: async function (appModel) {
+    let result = mModel.init().then(() => {
+      return mModel.create(appModel);
+    });
+    return result;
   }
+
 }
