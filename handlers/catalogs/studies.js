@@ -17,6 +17,8 @@ automapper.createMap('Study', 'ApiStudy')
   automapper.createMap('ApiStudy', 'Study')
   .forMember('studyNo', opts => opts.mapFrom('studyNo'))
   .forMember('planYear', opts => opts.mapFrom('planYear'))
+  .forMember('customer', opts => opts.mapFrom('customerId'))
+  .forMember('test_object', opts => opts.mapFrom('test_objectId'))
   .forMember('enabled', opts => opts.mapFrom('enabled'))
   .ignoreAllNonExisting();
 
@@ -56,6 +58,10 @@ module.exports = {
       return Boom.badRequest('Number of study is required field');
     } else if (!study.planYear) {
       return Boom.badRequest('Year of study is required field');
+    } else if (!study.customerId) {
+      return Boom.badRequest('Customer of study is required field');
+    } else if (!study.test_objectId) {
+      return Boom.badRequest('Test object of study is required field');
     }
 
     const appModel = automapper.map('ApiStudy', 'Study', study);
