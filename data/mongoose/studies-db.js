@@ -22,7 +22,7 @@ module.exports = {
       dbSelector.planYear = filter.year;
     }
     
-    return mModel.find(dbSelector).exec();
+    return mModel.find(dbSelector).populate('customer', 'name').populate('test_object', 'name').exec();
   },
 
   /**
