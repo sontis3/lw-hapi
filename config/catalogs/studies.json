@@ -207,6 +207,40 @@
         "summary": "Удалить исследование",
         "description": "Удалить исследование с идентификатором studyId"
       }
+    },
+    "/catalogs/studies/upload": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Файл успешно загружен",
+            "schema": {
+              "$ref": "#/definitions/study-file-output"
+            }
+          },
+          "400": {
+            "$ref": "../errors.json#/responses/400"
+          }
+        },
+        "summary": "Загрузка файлов исследования",
+        "operationId": "uploadStudyFile",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "upFile",
+            "type": "file",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "studyId",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
     }
   },
   "host": "localhost:3000",
@@ -329,6 +363,18 @@
           "properties": {}
         }
       ]
+    },
+    "study-file-output": {
+      "type": "object",
+      "title": "Study Upload File Output",
+      "required": [
+        "studyId"
+      ],
+      "properties": {
+        "studyId": {
+          "type": "string"
+        }
+      }
     }
   }
 }

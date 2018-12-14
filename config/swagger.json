@@ -1,54 +1,55 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "title": "lw-hapi",
-        "version": "1.0",
-        "description": "LIMS labworks Api",
-        "contact": {
-            "name": "Oleg Ovcharenko",
-            "email": "oleg.ovcharenko@labworks.ru"
-        },
-        "license": {
-            "name": "Apache 2.0"
-        }
+  "swagger": "2.0",
+  "info": {
+    "title": "lw-hapi",
+    "version": "1.0",
+    "description": "LIMS labworks Api",
+    "contact": {
+      "name": "Oleg Ovcharenko",
+      "email": "oleg.ovcharenko@labworks.ru"
     },
-    "paths": {
-        "/dir/customers": {
-            "$ref": "dir/customers.json#/paths/~1dir~1customers"
-        },
-        "/dir/customers/{customerId}": {
-            "$ref": "dir/customers.json#/paths/~1dir~1customers~1{customerId}"
-        },
-        "/dir/test-objects": {
-            "$ref": "dir/test-objects.json#/paths/~1dir~1test-objects"
-        },
-        "/dir/test-objects/{testObjectId}": {
-            "$ref": "dir/test-objects.json#/paths/~1dir~1test-objects~1{testObjectId}"
-        },
-        "/dir/delivery-methods": {
-            "$ref": "dir/delivery-methods.json#/paths/~1dir~1delivery-methods"
-        },
-        "/dir/delivery-methods/{deliveryMethodId}": {
-            "$ref": "dir/delivery-methods.json#/paths/~1dir~1delivery-methods~1{deliveryMethodId}"
-        },
-
-        "/catalogs/studies": {
-            "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies"
-        },
-        "/catalogs/studies/{studyId}": {
-            "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies~1{studyId}"
-        }
-
+    "license": {
+      "name": "Apache 2.0"
+    }
+  },
+  "paths": {
+    "/dir/customers": {
+      "$ref": "dir/customers.json#/paths/~1dir~1customers"
     },
-    "host": "localhost:3000",
-    "basePath": "/api",
-    "schemes": [
-        "http"
-    ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ]
+    "/dir/customers/{customerId}": {
+      "$ref": "dir/customers.json#/paths/~1dir~1customers~1{customerId}"
+    },
+    "/dir/test-objects": {
+      "$ref": "dir/test-objects.json#/paths/~1dir~1test-objects"
+    },
+    "/dir/test-objects/{testObjectId}": {
+      "$ref": "dir/test-objects.json#/paths/~1dir~1test-objects~1{testObjectId}"
+    },
+    "/dir/delivery-methods": {
+      "$ref": "dir/delivery-methods.json#/paths/~1dir~1delivery-methods"
+    },
+    "/dir/delivery-methods/{deliveryMethodId}": {
+      "$ref": "dir/delivery-methods.json#/paths/~1dir~1delivery-methods~1{deliveryMethodId}"
+    },
+    "/catalogs/studies": {
+      "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies"
+    },
+    "/catalogs/studies/{studyId}": {
+      "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies~1{studyId}"
+    },
+    "/catalogs/studies/upload": {
+      "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies~1upload"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ]
 }
