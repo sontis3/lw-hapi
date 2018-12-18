@@ -210,6 +210,12 @@
     },
     "/catalogs/studies/upload": {
       "post": {
+        "x-hapi-options": {
+          "payload": {
+            "maxBytes": 123456789,
+            "output": "data"
+          }
+        },
         "responses": {
           "200": {
             "description": "Файл успешно загружен",
