@@ -19,7 +19,7 @@ module.exports = {
       dbSelector.enabled = filter.enabled;
     }
     if (typeof (filter.year) !== 'undefined') {
-      dbSelector.planYear = filter.year;
+      dbSelector.plan_year = filter.year;
     }
     
     return mModel.find(dbSelector).populate('customer', 'name').populate('test_object', 'name').exec();

@@ -6,8 +6,8 @@ const automapper = require('automapper-ts');
 
 automapper.createMap('Study', 'ApiStudy')
   .forMember('id', opts => opts.sourceObject['_id'].subProp)
-  .forMember('studyNo', opts => opts.mapFrom('studyNo'))
-  .forMember('planYear', opts => opts.mapFrom('planYear'))
+  .forMember('studyNo', opts => opts.mapFrom('study_no'))
+  .forMember('planYear', opts => opts.mapFrom('plan_year'))
   .forMember('customer', opts => opts.mapFrom('customer'))
   .forMember('test_object', opts => opts.mapFrom('test_object'))
   .forMember('enabled', opts => opts.mapFrom('enabled'))
@@ -17,8 +17,8 @@ automapper.createMap('Study', 'ApiStudy')
   .ignoreAllNonExisting();
 
   automapper.createMap('ApiStudy', 'Study')
-  .forMember('studyNo', opts => opts.mapFrom('studyNo'))
-  .forMember('planYear', opts => opts.mapFrom('planYear'))
+  .forMember('study_no', opts => opts.mapFrom('studyNo'))
+  .forMember('plan_year', opts => opts.mapFrom('planYear'))
   .forMember('customer', opts => opts.mapFrom('customerId'))
   .forMember('test_object', opts => opts.mapFrom('test_objectId'))
   .forMember('enabled', opts => opts.mapFrom('enabled'))
@@ -68,7 +68,7 @@ module.exports = {
 
     const appModel = automapper.map('ApiStudy', 'Study', study);
     let result = await dal.create(appModel)
-      .then(dbResult => { return h.response(dbResult).code(201); })
+      .then(dbResult => { return h.response(automapper.map('Study', 'ApiStudy', dbResult)).code(201); })
       .catch(err => { return Boom.badRequest(err.message); });
     return result;
   }

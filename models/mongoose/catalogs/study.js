@@ -11,9 +11,9 @@ var counter = mongoose.model('counter', CounterSchema);
 
 
 const studySchema = new Schema({
-  studyNo: { required: true, type: String, unique: true, uppercase: true, trim: true, minlength: 5, maxlength: 12 }, // код исследования
-  planYear: { required: true, type: Number, min: 2015, max: 2050 },   // планируемый год
-  sequenceNumber: { type: Number, dafault: 0, min: 1, max: 100 },     // порядковый номер исследования
+  study_no: { required: true, type: String, unique: true, uppercase: true, trim: true, minlength: 5, maxlength: 12 }, // код исследования
+  plan_year: { required: true, type: Number, min: 2015, max: 2050 },  // планируемый год
+  sequence_number: { type: Number, dafault: 0, min: 1, max: 100 },     // порядковый номер исследования
   customer: { type: Schema.Types.ObjectId, ref: 'Customer' },         // заказчик исследования
   test_object: { type: Schema.Types.ObjectId, ref: 'Test_Object' },   // тестируемые объекты
 
@@ -31,7 +31,7 @@ studySchema.pre('save', function (next) {
   var doc = this;
   counter.findByIdAndUpdate({ _id: 'studyId' }, { $inc: { seq: 1 } }, { new: true, upsert: true })
     .then(function (count) {
-      doc.sequenceNumber = count.seq;
+      doc.sequence_number = count.seq;
       next();
     })
     .catch(function (error) {
