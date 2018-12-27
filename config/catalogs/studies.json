@@ -213,7 +213,8 @@
         "x-hapi-options": {
           "payload": {
             "maxBytes": 123456789,
-            "output": "data"
+            "output": "data",
+            "parse": true
           }
         },
         "responses": {
@@ -242,6 +243,18 @@
           {
             "in": "formData",
             "name": "studyId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "fileName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "fileType",
             "type": "string",
             "required": true
           }

@@ -1,5 +1,6 @@
 'use strict';
 const mModel = require('../../models/mongoose/catalogs/study');
+const { Duplex } = require('stream');
 
 /**
  * Operations on /catalogs/studies
@@ -37,6 +38,22 @@ module.exports = {
       return mModel.create(appModel);
     });
     return result;
-  }
+  },
 
+  // загрузка файлов в базу
+  upload: async function (buffer) {
+    // ковертация буфера в Duplex Stream
+    const bufStream = new Duplex();
+    bufStream.push(buffer.upFile);
+    bufStream.push(null);
+
+    const mongodb = mModel.base.mongo;
+    const bucket = new mongodb.GridFSBucket(mModel.db.db);
+    const uploadStream = bucket.openUploadStream(buffer.fileName);
+    uploadStream.options.contentType = buffer.fileType;
+    uploadStream.options.metadata = {
+      studyId: buffer.studyId
+    };
+    bufStream.pipe(uploadStream);
+  }
 }
