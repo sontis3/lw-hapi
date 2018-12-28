@@ -1,6 +1,6 @@
 'use strict';
 const mModel = require('../../models/mongoose/catalogs/study');
-const { Duplex } = require('stream');
+const { Readable } = require('stream');
 
 /**
  * Operations on /catalogs/studies
@@ -42,8 +42,8 @@ module.exports = {
 
   // загрузка файлов в базу
   upload: async function (buffer) {
-    // ковертация буфера в Duplex Stream
-    const bufStream = new Duplex();
+    // ковертация буфера в Readable Stream
+    const bufStream = new Readable();
     bufStream.push(buffer.upFile);
     bufStream.push(null);
 
@@ -55,5 +55,10 @@ module.exports = {
       studyId: buffer.studyId
     };
     bufStream.pipe(uploadStream);
+    return new Promise((resolve, reject) => {
+      uploadStream
+        .on('error', (error) => { reject(error); })
+        .on('finish', () => { resolve(uploadStream.id.toString()); });
+    });
   }
 }

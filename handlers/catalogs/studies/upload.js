@@ -14,14 +14,14 @@ module.exports = {
      * produces: 
      * responses: 200, 400
      */
-    post: function uploadStudyFile(request, h) {
+    post: async function uploadStudyFile(request, h) {
       const studyFileData = request.payload;
       if (!studyFileData) {
         return Boom.badData('No upload file data');
       }
 
-      dal.upload(studyFileData);
+      const result = await dal.upload(studyFileData);
       // return Boom.notImplemented();
-      return 0;
+      return result;
     }
 };
