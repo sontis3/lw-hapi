@@ -41,7 +41,7 @@ module.exports = {
   },
 
   // загрузка файлов в базу
-  upload: async function (buffer) {
+  upload: async function (studyId, buffer) {
     // ковертация буфера в Readable Stream
     const bufStream = new Readable();
     bufStream.push(buffer.upFile);
@@ -52,7 +52,7 @@ module.exports = {
     const uploadStream = bucket.openUploadStream(buffer.fileName);
     uploadStream.options.contentType = buffer.fileType;
     uploadStream.options.metadata = {
-      studyId: buffer.studyId
+      studyId: studyId
     };
     bufStream.pipe(uploadStream);
     return new Promise((resolve, reject) => {
@@ -60,5 +60,15 @@ module.exports = {
         .on('error', (error) => { reject(error); })
         .on('finish', () => { resolve(uploadStream.id.toString()); });
     });
+  },
+
+  /**
+   * summary: Проверка наличия файла в GridFS
+   * description: 
+   * parameters: studyId - Id исследования, fileName - имя файла
+   * produces: true/false
+   */
+  isFileExists: async function (studyId, fileName) {
+  
   }
 }

@@ -208,7 +208,7 @@
         "description": "Удалить исследование с идентификатором studyId"
       }
     },
-    "/catalogs/studies/upload": {
+    "/catalogs/studies/{studyId}/content": {
       "post": {
         "x-hapi-options": {
           "payload": {
@@ -242,12 +242,6 @@
           },
           {
             "in": "formData",
-            "name": "studyId",
-            "type": "string",
-            "required": true
-          },
-          {
-            "in": "formData",
             "name": "fileName",
             "type": "string",
             "required": true
@@ -259,7 +253,15 @@
             "required": true
           }
         ]
-      }
+      },
+      "parameters": [
+        {
+          "name": "studyId",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ]
     }
   },
   "host": "localhost:3000",

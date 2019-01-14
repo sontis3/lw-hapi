@@ -37,8 +37,8 @@
     "/catalogs/studies/{studyId}": {
       "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies~1{studyId}"
     },
-    "/catalogs/studies/upload": {
-      "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies~1upload"
+    "/catalogs/studies/{studyId}/content": {
+      "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies~1{studyId}~1content"
     }
   },
   "host": "localhost:3000",
