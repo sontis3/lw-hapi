@@ -23,5 +23,16 @@ module.exports = {
 
       const result = await dal.upload(studyId, studyFileData);
       return result;
+    },
+    
+    /**
+     * summary: Получить контент исследования
+     * description: 
+     * parameters: contentName
+     * produces: 
+     * responses: 200, 404
+     */
+    get: function getStudyContent(request, h) {
+        return Boom.notImplemented();
     }
 };

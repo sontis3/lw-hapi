@@ -261,7 +261,99 @@
           "type": "string",
           "required": true
         }
-      ]
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "fileName": {
+                    "type": "string"
+                  },
+                  "length": {
+                    "type": "integer",
+                    "format": "int64",
+                    "minimum": 0
+                  },
+                  "uploadDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "contentType": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "fileName",
+                  "length",
+                  "uploadDate",
+                  "contentType",
+                  "content"
+                ]
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "fileName": "est sed commodo proident",
+                  "length": 97911366,
+                  "uploadDate": "1953-07-02T18:32:36.031Z",
+                  "contentType": "sunt fugiat nostrud aute",
+                  "content": "ut"
+                },
+                {
+                  "fileName": "qui",
+                  "length": 37379980,
+                  "uploadDate": "1940-11-29T10:42:40.642Z",
+                  "contentType": "aliqua",
+                  "content": "incididunt ad in voluptate"
+                },
+                {
+                  "fileName": "labore",
+                  "length": 1171378,
+                  "uploadDate": "1964-12-15T21:18:39.681Z",
+                  "contentType": "sint ea laborum",
+                  "content": "anim officia amet"
+                },
+                {
+                  "fileName": "aliquip tempor nulla Lorem ullamco",
+                  "length": 26260212,
+                  "uploadDate": "1983-02-05T10:20:00.796Z",
+                  "contentType": "ut ullamco",
+                  "content": "nisi occaecat commodo consequat cupidatat"
+                },
+                {
+                  "fileName": "exercitation",
+                  "length": 68472219,
+                  "uploadDate": "2004-02-16T23:22:34.922Z",
+                  "contentType": "veli",
+                  "content": "non"
+                }
+              ]
+            }
+          },
+          "404": {
+            "$ref": "../errors.json#/responses/404"
+          }
+        },
+        "summary": "Получить контент исследования",
+        "operationId": "getStudyContent",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "contentName",
+            "type": "string"
+          }
+        ]
+      }
     }
   },
   "host": "localhost:3000",
