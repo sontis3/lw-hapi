@@ -65,10 +65,10 @@ module.exports = {
   /**
    * summary: Проверка наличия файла в GridFS
    * description: 
-   * parameters: studyId - Id исследования, fileName - имя файла
+   * parameters: studyId - Id исследования, contentName - имя файла
    * produces: true/false
    */
-  isFileExists: async function (studyId, fileName) {
+  isContentExists: async function (studyId, contentName) {
   
   }
 }

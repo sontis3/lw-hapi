@@ -39,6 +39,9 @@
     },
     "/catalogs/studies/{studyId}/content": {
       "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies~1{studyId}~1content"
+    },
+    "/catalogs/studies/{studyId}/content/info": {
+      "$ref": "catalogs/studies.json#/paths/~1catalogs~1studies~1{studyId}~1content~1info"
     }
   },
   "host": "localhost:3000",

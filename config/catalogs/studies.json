@@ -354,6 +354,80 @@
           }
         ]
       }
+    },
+    "/catalogs/studies/{studyId}/content/info": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "fileName": {
+                    "type": "string"
+                  },
+                  "length": {
+                    "type": "integer",
+                    "format": "int64",
+                    "minimum": 0
+                  },
+                  "uploadDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "contentType": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "fileName",
+                  "length",
+                  "uploadDate",
+                  "contentType"
+                ]
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "fileName": "elit quis magna",
+                  "length": 42754091,
+                  "uploadDate": "1973-06-07T03:19:41.656Z",
+                  "contentType": "do"
+                },
+                {
+                  "fileName": "nisi pariatur ea est consequat",
+                  "length": 88534499,
+                  "uploadDate": "2017-05-18T07:17:41.300Z",
+                  "contentType": "quis in officia adipisici"
+                }
+              ]
+            }
+          },
+          "404": {
+            "$ref": "../errors.json#/responses/404"
+          }
+        },
+        "summary": "Получить инфо о контенте исследования",
+        "operationId": "getStudyContentInfo",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "contentName",
+            "type": "string"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "studyId",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ]
     }
   },
   "host": "localhost:3000",
