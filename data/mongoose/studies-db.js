@@ -42,7 +42,7 @@ module.exports = {
 
   // загрузка файлов в базу
   upload: async function (studyId, buffer) {
-    // ковертация буфера в Readable Stream
+    // конвертация буфера в Readable Stream
     const bufStream = new Readable();
     bufStream.push(buffer.upFile);
     bufStream.push(null);
@@ -63,12 +63,16 @@ module.exports = {
   },
 
   /**
-   * summary: Проверка наличия файла в GridFS
+   * summary: Получение инфо загруженных файлов исследования из GridFS
    * description: 
-   * parameters: studyId - Id исследования, contentName - имя файла
-   * produces: true/false
+   * parameters: studyId - Id исследования
+   * produces: array file info
    */
-  isContentExists: async function (studyId, contentName) {
-  
+  getContentInfo: async function (studyId) {
+    const mongodb = mModel.base.mongo;
+    const bucket = new mongodb.GridFSBucket(mModel.db.db);
+    const contentInfoCursor = bucket.find({"metadata.studyId": studyId});
+    const contentInfoArray = contentInfoCursor.toArray();
+    return contentInfoArray;
   }
 }
