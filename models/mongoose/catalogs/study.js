@@ -13,7 +13,7 @@ var counter = mongoose.model('counter', CounterSchema);
 const studySchema = new Schema({
   study_no: { required: true, type: String, unique: true, uppercase: true, trim: true, minlength: 5, maxlength: 12 }, // код исследования
   plan_year: { required: true, type: Number, min: 2015, max: 2050 },  // планируемый год
-  sequence_number: { type: Number, dafault: 0, min: 1, max: 100 },     // порядковый номер исследования
+  sequence_number: { type: Number, default: 0, min: 1, max: 100 },     // порядковый номер исследования
   customer: { type: Schema.Types.ObjectId, ref: 'Customer' },         // заказчик исследования
   test_object: { type: Schema.Types.ObjectId, ref: 'Test_Object' },   // тестируемые объекты
 
